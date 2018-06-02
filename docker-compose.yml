@@ -1,0 +1,35 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: remote-feature-toggle-docker
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+    links:
+      - rft-mysql
+      # - rft-redis
+    # environment:
+      # DB_HOST: mysql
+      # DB_DATABASE: remote_feature_toggle
+      # DB_USERNAME: rftadmin
+      # DB_PASSWORD: rftpwd
+      # REDIS_HOST: redis
+      # SESSION_DRIVER: redis
+      # CACHE_DRIVER: redis
+  rft-mysql:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: remote_feature_toggle
+      MYSQL_USER: rftadmin
+      MYSQL_PASSWORD: rftpwd
+      MYSQL_ROOT_PASSWORD: rftpwdroot
+  # rft-redis:
+  #   image: redis:4.0-alpine
+  #   ports:
+  #     - 16379:6379
