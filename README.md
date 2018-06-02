@@ -2,7 +2,9 @@
 
 Backend for Remote Feature Toggle Project.
 
-This backend is designed for work alone however the official frontend for this project can be founed [here](https://github.com/RemoteFeatureToggle/frontend).
+The Remote Feature Toggle project is a tool to turn on/off your others projects features remotely.
+
+This backend is designed for work alone however the official frontend for this project can be found [here](https://github.com/RemoteFeatureToggle/frontend).
 
 ## Getting Started
 
