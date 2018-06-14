@@ -32,8 +32,6 @@ class CreateFeaturesTable extends Migration
      */
     public function down()
     {
-        Schema::table('features', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('features');
     }
 }

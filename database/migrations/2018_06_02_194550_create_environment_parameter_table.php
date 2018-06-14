@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStrategiesTable extends Migration
+class CreateEnvironmentParameterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateStrategiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('strategies', function (Blueprint $table) {
+        Schema::create('enviroment_parameter', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid');
-            $table->string('name', 200);
-            $table->string('description', 200);
-            $table->integer('sequence', false, true);
+            $table->unsignedInteger('environment_id');
+            $table->unsignedInteger('parameter_id');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique('name');
+            $table->foreign('environment_id')->references('id')->on('environments');
+            $table->foreign('parameter_id')->references('id')->on('parameters');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateStrategiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('strategies');
+        Schema::dropIfExists('enviroment_feature');
     }
 }

@@ -1,6 +1,6 @@
 FROM php:7.2.6-apache
 
-LABEL "com.github.RemoteFeatureToggle"="Remote Feature Toggle"
+LABEL "com.github.FeatureManager"="Feature Manager"
 
 COPY . /var/www/html
 COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf

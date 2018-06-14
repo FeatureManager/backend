@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStrategiesTable extends Migration
+class CreateEnvironmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateStrategiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('strategies', function (Blueprint $table) {
+        Schema::create('environments', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid');
             $table->string('name', 200);
-            $table->string('description', 200);
-            $table->integer('sequence', false, true);
+            $table->string('description', 500);
             $table->timestamps();
             $table->softDeletes();
 
@@ -33,6 +32,6 @@ class CreateStrategiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('strategies');
+        Schema::dropIfExists('environments');
     }
 }

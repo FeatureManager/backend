@@ -16,6 +16,14 @@ class Feature extends Model
     ];
 
     /**
+     * The Environments that belong to the Feature.
+     */
+    public function environments()
+    {
+        return $this->belongsToMany('App\Environment');
+    }
+
+    /**
      * The Strategies that belong to the Feature.
      */
     public function strategies()

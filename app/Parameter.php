@@ -14,4 +14,12 @@ class Parameter extends Model
     protected $fillable = [
         'name', 'value', 'description'
     ];
+
+    /**
+     * The Environments that belong to the Parameter.
+     */
+    public function environments()
+    {
+        return $this->belongsToMany('App\Environment');
+    }
 }

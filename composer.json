@@ -1,7 +1,7 @@
 {
-    "name": "remotefeaturetoggle/backend",
-    "description": "The Remote Feature Toggle Backend. The Remote Feature Toggle project is a tool to turn on/off your others projects features remotely.",
-    "keywords": ["Remote", "feature", "toggle"],
+    "name": "featuremanager/backend",
+    "description": "The Feature Manager Backend. The Feature Manager project is a tool to turn on/off your projects features and/or set environmental parameters remotely.",
+    "keywords": ["remote", "feature", "toggle", "parameter"],
     "license": "MIT",
     "type": "project",
     "version": "0.0.1-dev",
