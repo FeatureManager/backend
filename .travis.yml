@@ -22,7 +22,6 @@ cache:
 
 before_install:
   - phpenv config-rm xdebug.ini || true
-  - composer satooshi/php-coveralls:dev-master
   - composer install
   - travis_retry composer self-update
 
