@@ -21,8 +21,6 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
-  - phpenv config-rm xdebug.ini || true
-  - printf "\n" | pecl install -f xdebug
   - travis_retry composer self-update
 
 install:
@@ -32,6 +30,3 @@ install:
 script: 
   - mkdir -p build/logs
   - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
-
-after_success:
-  - travis_retry php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
