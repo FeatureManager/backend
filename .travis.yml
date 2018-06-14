@@ -22,7 +22,7 @@ cache:
 
 before_install:
   - phpenv config-rm xdebug.ini || true
-  - composer install
+  - printf "\n" | pecl install -f xdebug
   - travis_retry composer self-update
 
 install:
