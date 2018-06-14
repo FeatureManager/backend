@@ -18,7 +18,7 @@ First of all you need [Docker](https://www.docker.com/) and Docker Composer inst
 
 ### Running Docker Container
 
-After you have cloned the repository we can see the ```docker-composer.yml``` and the ```.docker``` directory on project's root folder. Once finished the cloning process you must execute the commands as follows:
+After you have cloned the repository you can see the ```docker-composer.yml``` and the ```.docker``` directory on project's root folder. Once finished the cloning process you must execute the commands as follows:
 
 ```bash
 docker-composer build
@@ -38,19 +38,19 @@ At this point you should be able to access the Backend on url:
 
 [http://localhost:8080/](http://localhost:8080/)
 
-Since Feature Manager backend is based on [Lumen](https://lumen.laravel.com), we must enter on container bash and give some directories permissions:
+Since Feature Manager backend is based on [Lumen](https://lumen.laravel.com), you must enter on container bash and give some directories permissions:
 
 ```bash
 chmod -R o+rw bootstrap/ storage/
 ```
 
-Ok, we almost there, now let's create the database (yet on container bash):
+Ok, you almost there, now let's create the database (yet on container bash):
 
 ```bash
 php artisan migrate
 ```
 
-Now, we are able to code!
+Now, you are able to code!
 
 ### Code of Conduct
 
