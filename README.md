@@ -1,6 +1,8 @@
-[![StyleCI](https://github.styleci.io/repos/135836665/shield?branch=master)](https://github.styleci.io/repos/135836665)
-
 # Feature Manager
+
+[![Build Status](https://travis-ci.org/FeatureManager/backend.svg?branch=master)](https://travis-ci.org/FeatureManager/backend) [![Coverage Status](https://coveralls.io/repos/github/FeatureManager/backend/badge.svg?branch=master)](https://coveralls.io/github/FeatureManager/backend?branch=master) [![StyleCI](https://github.styleci.io/repos/135836665/shield?branch=master&style=flat)](https://github.styleci.io/repos/135836665) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+
 
 The Feature Manager project is a tool to turn on/off your projects features and/or set environmental parameters remotely.
 
