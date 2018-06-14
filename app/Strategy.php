@@ -12,7 +12,7 @@ class Strategy extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'sequence'
+        'name', 'description', 'sequence',
     ];
 
     /**
