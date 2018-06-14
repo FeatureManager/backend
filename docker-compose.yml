@@ -1,0 +1,35 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: feature-manager-docker
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+    links:
+      - fm-mysql
+      # - fm-redis
+    # environment:
+      # DB_HOST: mysql
+      # DB_DATABASE: feature_manager
+      # DB_USERNAME: fmadmin
+      # DB_PASSWORD: fmpwd
+      # REDIS_HOST: redis
+      # SESSION_DRIVER: redis
+      # CACHE_DRIVER: redis
+  fm-mysql:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: feature_manager
+      MYSQL_USER: fmadmin
+      MYSQL_PASSWORD: fmpwd
+      MYSQL_ROOT_PASSWORD: fmpwdroot
+  # fm-redis:
+  #   image: redis:4.0-alpine
+  #   ports:
+  #     - 16379:6379
