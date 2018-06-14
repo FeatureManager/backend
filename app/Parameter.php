@@ -12,7 +12,7 @@ class Parameter extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'value', 'description'
+        'name', 'value', 'description',
     ];
 
     /**
