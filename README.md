@@ -1,3 +1,5 @@
+[![StyleCI](https://github.styleci.io/repos/135836665/shield?branch=master)](https://github.styleci.io/repos/135836665)
+
 # Feature Manager
 
 The Feature Manager project is a tool to turn on/off your projects features and/or set environmental parameters remotely.
