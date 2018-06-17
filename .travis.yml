@@ -22,7 +22,7 @@ before_install:
 install:
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest; fi
 
-after_install:
+before_script:
   - mkdir -p build/logs
   - cp .env.travis .env
   - mysql -e 'create database feature_manager;'
