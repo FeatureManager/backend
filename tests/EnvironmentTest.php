@@ -4,7 +4,7 @@ class EnvironmentTest extends TestCase
 {
     public function testListEnvironments()
     {
-        $this->get("environment");
+        $this->get("admin/environment");
         $this->seeStatusCode(200);
         $this->seeJson([
             'enabled' => 1
@@ -20,7 +20,7 @@ class EnvironmentTest extends TestCase
             'enabled' => true
         ];
 
-        $this->post("environment", $data);
+        $this->post("admin/environment", $data);
         $this->seeStatusCode(200);
         $this->seeJson([
             'name' => $name,
@@ -30,7 +30,7 @@ class EnvironmentTest extends TestCase
     public function testShowEnvironment()
     {
         $environment = \App\Environment::first();
-        $this->get("environment/" . $environment->uuid);
+        $this->get("admin/environment/" . $environment->uuid);
         $this->seeStatusCode(200);
         $this->seeJsonContains([
             'name' => $environment->name
@@ -43,7 +43,7 @@ class EnvironmentTest extends TestCase
         $updatedName = $environment->name . ' Updated';
         $environment->name = $updatedName;
 
-        $this->put("environment", $environment->toArray());
+        $this->put("admin/environment", $environment->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -54,7 +54,7 @@ class EnvironmentTest extends TestCase
     {
         $environment = \App\Environment::first();
 
-        $this->put("environment/" . $environment->uuid, $environment->toArray());
+        $this->put("admin/environment/" . $environment->uuid, $environment->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -65,7 +65,7 @@ class EnvironmentTest extends TestCase
     {
         $environment = \App\Environment::first();
 
-        $this->delete("environment/" . $environment->uuid, $environment->toArray());
+        $this->delete("admin/environment/" . $environment->uuid, $environment->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,

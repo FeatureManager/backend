@@ -4,7 +4,7 @@ class ParameterTest extends TestCase
 {
     public function testListParameters()
     {
-        $this->get("parameter");
+        $this->get("admin/parameter");
         $this->seeStatusCode(200);
         $this->seeJson([
             'enabled' => 1
@@ -20,7 +20,7 @@ class ParameterTest extends TestCase
             'enabled' => true
         ];
 
-        $this->post("parameter", $data);
+        $this->post("admin/parameter", $data);
         $this->seeStatusCode(200);
         $this->seeJson([
             'name' => $name,
@@ -30,7 +30,7 @@ class ParameterTest extends TestCase
     public function testShowParameter()
     {
         $parameter = \App\Parameter::first();
-        $this->get("parameter/" . $parameter->uuid);
+        $this->get("admin/parameter/" . $parameter->uuid);
         $this->seeStatusCode(200);
         $this->seeJsonContains([
             'name' => $parameter->name
@@ -43,7 +43,7 @@ class ParameterTest extends TestCase
         $updatedName = $parameter->name . ' Updated';
         $parameter->name = $updatedName;
 
-        $this->put("parameter", $parameter->toArray());
+        $this->put("admin/parameter", $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -54,7 +54,7 @@ class ParameterTest extends TestCase
     {
         $parameter = \App\Parameter::first();
 
-        $this->put("parameter/" . $parameter->uuid, $parameter->toArray());
+        $this->put("admin/parameter/" . $parameter->uuid, $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -65,7 +65,7 @@ class ParameterTest extends TestCase
     {
         $parameter = \App\Parameter::first();
 
-        $this->delete("parameter/" . $parameter->uuid, $parameter->toArray());
+        $this->delete("admin/parameter/" . $parameter->uuid, $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
