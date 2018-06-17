@@ -18,14 +18,6 @@ cache:
 
 before_install:
   - mkdir -p build/logs
-  - mkdir bootstrap/cache
-  - mkdir storage
-  - mkdir storage/app
-  - mkdir storage/framework
-  - mkdir storage/framework/sessions
-  - mkdir storage/framework/cache
-  - mkdir storage/framework/views
-  - chmod 777 -R storage
   - mysql -e 'create database feature_manager;'
   - cp .env.travis .env
   - travis_retry composer self-update
