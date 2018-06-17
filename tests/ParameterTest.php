@@ -4,7 +4,7 @@ class ParameterTest extends TestCase
 {
     public function testListParameters()
     {
-        $this->get("admin/parameter");
+        $this->get('admin/parameter');
         $this->seeStatusCode(200);
         $this->seeJson([
             'enabled' => 1,
@@ -19,7 +19,7 @@ class ParameterTest extends TestCase
             'description' => 'This is a sandbox parameter.',
             'enabled'     => true,
         ];
-        $this->post("admin/parameter", $data);
+        $this->post('admin/parameter', $data);
         $this->seeStatusCode(200);
         $this->seeJson([
             'name' => $name,
@@ -29,7 +29,7 @@ class ParameterTest extends TestCase
     public function testShowParameter()
     {
         $parameter = \App\Parameter::first();
-        $this->get("admin/parameter/" . $parameter->uuid);
+        $this->get('admin/parameter/'.$parameter->uuid);
         $this->seeStatusCode(200);
         $this->seeJsonContains([
             'name' => $parameter->name,
@@ -41,7 +41,7 @@ class ParameterTest extends TestCase
         $parameter = \App\Parameter::first();
         $updatedName = $parameter->name.' Updated';
         $parameter->name = $updatedName;
-        $this->put("admin/parameter", $parameter->toArray());
+        $this->put('admin/parameter', $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -51,7 +51,7 @@ class ParameterTest extends TestCase
     public function testEnableParameter()
     {
         $parameter = \App\Parameter::first();
-        $this->put("admin/parameter/" . $parameter->uuid, $parameter->toArray());
+        $this->put('admin/parameter/'.$parameter->uuid, $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -61,7 +61,7 @@ class ParameterTest extends TestCase
     public function testDisableParameter()
     {
         $parameter = \App\Parameter::first();
-        $this->delete("admin/parameter/" . $parameter->uuid, $parameter->toArray());
+        $this->delete('admin/parameter/'.$parameter->uuid, $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
