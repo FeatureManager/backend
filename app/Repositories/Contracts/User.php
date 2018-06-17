@@ -15,14 +15,4 @@ interface User
      * @return mixed
      */
     public function createOrUpdate(array $data);
-
-    /**
-     * Just sets the enabled field with $activate value.
-     * it will update the model.
-     *
-     * @param Uiid $uuid
-     * @param boolean $activate
-     * @return boolean
-     */
-    public function toggle($uuid, $activate = true);
 }
