@@ -18,6 +18,7 @@ class CreateEnvironmentsTable extends Migration
             $table->uuid('uuid');
             $table->string('name', 200);
             $table->string('description', 500);
+            $table->boolean('enabled');
             $table->timestamps();
             $table->softDeletes();
 

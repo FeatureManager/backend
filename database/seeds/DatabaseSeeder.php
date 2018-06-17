@@ -11,6 +11,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
+        factory(App\Environment::class, 10)->create();
+        factory(App\Feature::class, 10)->create();
+        factory(App\Parameter::class, 10)->create();
+        factory(App\Strategy::class, 10)->create();
+
+        // Populate pivot tables for Envionments.
+        $environments = App\Environment::all();
+
+        App\Feature::all()->each(function ($feature) use ($environments) {
+            $feature->environments()->attach(
+                $environments->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
+
+        App\Parameter::all()->each(function ($parameter) use ($environments) {
+            $parameter->environments()->attach(
+                $environments->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
+
+        // Populate pivot tables for Features
+        $features = App\Feature::all();
+
+        App\Strategy::all()->each(function ($strategy) use ($features) {
+            $strategy->features()->attach(
+                $features->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
     }
 }

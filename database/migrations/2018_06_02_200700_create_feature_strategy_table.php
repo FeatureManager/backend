@@ -15,12 +15,9 @@ class CreateFeatureStrategyTable extends Migration
     {
         Schema::create('feature_strategy', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('uuid');
             $table->unsignedInteger('feature_id');
             $table->unsignedInteger('strategy_id');
             $table->string('input', 200)->comment('Data to be evaluated with the feature strategy');
-            $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('feature_id')->references('id')->on('features');
             $table->foreign('strategy_id')->references('id')->on('strategies');

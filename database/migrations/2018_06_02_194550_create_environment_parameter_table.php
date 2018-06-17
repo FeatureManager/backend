@@ -13,13 +13,10 @@ class CreateEnvironmentParameterTable extends Migration
      */
     public function up()
     {
-        Schema::create('enviroment_parameter', function (Blueprint $table) {
+        Schema::create('environment_parameter', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('uuid');
             $table->unsignedInteger('environment_id');
             $table->unsignedInteger('parameter_id');
-            $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('environment_id')->references('id')->on('environments');
             $table->foreign('parameter_id')->references('id')->on('parameters');
@@ -33,6 +30,6 @@ class CreateEnvironmentParameterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enviroment_feature');
+        Schema::dropIfExists('environment_feature');
     }
 }

@@ -13,13 +13,11 @@ class CreateEnvironmentFeatureTable extends Migration
      */
     public function up()
     {
-        Schema::create('enviroment_feature', function (Blueprint $table) {
+        Schema::create('environment_feature', function (Blueprint $table) {
             $table->increments('id');
-            $table->uuid('uuid');
             $table->unsignedInteger('environment_id');
             $table->unsignedInteger('feature_id');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->integer('sequence', false, true);
 
             $table->foreign('environment_id')->references('id')->on('environments');
             $table->foreign('feature_id')->references('id')->on('features');
@@ -33,6 +31,6 @@ class CreateEnvironmentFeatureTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enviroment_feature');
+        Schema::dropIfExists('environment_feature');
     }
 }

@@ -1,18 +1,30 @@
 <?php
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Environment extends Model
 {
+    use SoftDeletes;
+    use Uuids;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'description',
+        'name', 'description', 'enabled'
+    ];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id',
     ];
 
     /**

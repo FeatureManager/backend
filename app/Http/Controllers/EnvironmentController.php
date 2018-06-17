@@ -1,43 +1,65 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Contracts\Environment;
 
 class EnvironmentController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * The Environment Repository Instance.
      *
-     * @return void
+     * @var Environment
      */
-    public function __construct()
+    protected $environment = null;
+
+    /**
+     * Injecting Environment Repository Abstraction.
+     *
+     * @param Environment $environment
+     */
+    public function __construct(Environment $environment)
     {
-        //
+        $this->environment = $environment;
     }
 
     public function list()
     {
-        //
+        $environments = $this->environment->getAllEnvironments();
+        return $environments;
     }
 
-    public function show($environment)
+    public function show($uuid)
     {
-        //
+        $environment = $this->environment->getEnvironmentById($uuid);
+        return $environment;
     }
 
     public function save(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:environments|max:255',
+            'enabled' => 'required',
+        ]);
+
+        $environment = $this->environment->createOrUpdate($request->toArray());
+        if (is_bool($environment)) {
+            $environment = [ "message" => $environment ];
+        }
+        return $environment;
     }
 
-    public function enable($environment)
+    public function toggle(Request $request, $uuid)
     {
-        //
-    }
+        $this->validate($request, [
+            'uuid' => 'required',
+        ]);
 
-    public function disable($environment)
-    {
-        //
+        $activate = true;
+        if ($request->getMethod() == 'DELETE') {
+            $activate = false;
+        }
+        $environment = $this->environment->toggle($uuid, $activate);
+        return [ "message" => $environment ];
     }
 }

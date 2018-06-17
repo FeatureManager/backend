@@ -18,7 +18,7 @@ class CreateStrategiesTable extends Migration
             $table->uuid('uuid');
             $table->string('name', 200);
             $table->string('description', 200);
-            $table->integer('sequence', false, true);
+            $table->boolean('enabled');
             $table->timestamps();
             $table->softDeletes();
 

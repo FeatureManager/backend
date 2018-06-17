@@ -41,3 +41,7 @@ php artisan migrate
 ```
 
 Now, you are able to code!
+
+## Testing
+
+Because our Docker Environment, on your local machine, you must call PHPUnit from Feature Manager Docker Bash.

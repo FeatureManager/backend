@@ -17,27 +17,36 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'environment'], function () use ($router) {
     $router->get('', 'EnvironmentController@list');
-    $router->get('/{environment}', 'EnvironmentController@show');
+    $router->get('/{uuid}', 'EnvironmentController@show');
     $router->put('/', 'EnvironmentController@save');
     $router->post('/', 'EnvironmentController@save');
-    $router->put('/{environment}', 'EnvironmentController@enable');
-    $router->delete('/{environment}', 'EnvironmentController@disable');
+    $router->put('/{uuid}', 'EnvironmentController@toggle');
+    $router->delete('/{uuid}', 'EnvironmentController@toggle');
 });
 
 $router->group(['prefix' => 'parameter'], function () use ($router) {
     $router->get('', 'ParameterController@list');
-    $router->get('/{parameter}', 'ParameterController@show');
+    $router->get('/{uuid}', 'ParameterController@show');
     $router->put('/', 'ParameterController@save');
     $router->post('/', 'ParameterController@save');
-    $router->put('/{parameter}', 'ParameterController@enable');
-    $router->delete('/{parameter}', 'ParameterController@disable');
+    $router->put('/{uuid}', 'ParameterController@toggle');
+    $router->delete('/{uuid}', 'ParameterController@toggle');
 });
 
 $router->group(['prefix' => 'feature'], function () use ($router) {
     $router->get('', 'FeatureController@list');
-    $router->get('/{feature}', 'FeatureController@show');
+    $router->get('/{uuid}', 'FeatureController@show');
     $router->put('/', 'FeatureController@save');
     $router->post('/', 'FeatureController@save');
-    $router->put('/{feature}', 'FeatureController@enable');
-    $router->delete('/{feature}', 'FeatureController@disable');
+    $router->put('/{uuid}', 'FeatureController@toggle');
+    $router->delete('/{uuid}', 'FeatureController@toggle');
+});
+
+$router->group(['prefix' => 'strategy'], function () use ($router) {
+    $router->get('', 'StrategyController@list');
+    $router->get('/{uuid}', 'StrategyController@show');
+    $router->put('/', 'StrategyController@save');
+    $router->post('/', 'StrategyController@save');
+    $router->put('/{uuid}', 'StrategyController@toggle');
+    $router->delete('/{uuid}', 'StrategyController@toggle');
 });

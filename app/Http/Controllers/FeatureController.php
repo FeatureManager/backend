@@ -3,41 +3,64 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Contracts\Feature;
 
 class FeatureController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * The Feature Repository Instance.
      *
-     * @return void
+     * @var Feature
      */
-    public function __construct()
+    protected $feature = null;
+
+    /**
+     * Injecting Feature Repository Abstraction.
+     *
+     * @param Feature $feature
+     */
+    public function __construct(Feature $feature)
     {
-        //
+        $this->feature = $feature;
     }
 
     public function list()
     {
-        //
+        $features = $this->feature->getAllFeatures();
+        return $features;
     }
 
-    public function show($feature)
+    public function show($uuid)
     {
-        //
+        $feature = $this->feature->getFeatureById($uuid);
+        return $feature;
     }
 
     public function save(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:features|max:255',
+            'enabled' => 'required',
+        ]);
+
+        $feature = $this->feature->createOrUpdate($request->toArray());
+        if (is_bool($feature)) {
+            $feature = [ "message" => $feature ];
+        }
+        return $feature;
     }
 
-    public function enable($feature)
+    public function toggle(Request $request, $uuid)
     {
-        //
-    }
+        $this->validate($request, [
+            'uuid' => 'required',
+        ]);
 
-    public function disable($feature)
-    {
-        //
+        $activate = true;
+        if ($request->getMethod() == 'DELETE') {
+            $activate = false;
+        }
+        $feature = $this->feature->toggle($uuid, $activate);
+        return [ "message" => $feature ];
     }
 }

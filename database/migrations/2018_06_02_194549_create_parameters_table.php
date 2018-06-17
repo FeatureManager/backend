@@ -19,6 +19,7 @@ class CreateParametersTable extends Migration
             $table->string('name', 200);
             $table->string('value', 200);
             $table->string('description', 500);
+            $table->boolean('enabled');
             $table->timestamps();
             $table->softDeletes();
 
