@@ -20,9 +20,6 @@ before_install:
   - mkdir -p build/logs
   - cp .env.travis .env
   - mysql -e 'create database feature_manager;'
-  - export DB_DATABASE=feature_manager
-  - export DB_USERNAME=root
-  - export DB_PASSWORD=
   - travis_retry composer self-update
 
 install:
