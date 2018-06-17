@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
 
         App\Feature::all()->each(function ($feature) use ($environments) {
             $feature->environments()->attach(
-                $environments->random(rand(1, 3))->pluck('id')->toArray()
+                $environments->random(rand(1, 3))->pluck('id')->toArray(),
+                ['sequence' => rand(1, 3)]
             );
         });
 
@@ -36,7 +37,8 @@ class DatabaseSeeder extends Seeder
 
         App\Strategy::all()->each(function ($strategy) use ($features) {
             $strategy->features()->attach(
-                $features->random(rand(1, 3))->pluck('id')->toArray()
+                $features->random(rand(1, 3))->pluck('id')->toArray(),
+                ['input' => '']
             );
         });
     }

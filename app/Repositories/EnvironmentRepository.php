@@ -16,7 +16,7 @@ class EnvironmentRepository implements Contract
         return Environment::where('uuid', $uuid)->firstOrFail();
     }
 
-    public function createOrUpdate($data)
+    public function createOrUpdate(array $data)
     {
         if (array_has($data, 'uuid')) {
             $environment = Environment::where('uuid', $data['uuid'])->firstOrFail();

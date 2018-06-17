@@ -16,7 +16,7 @@ class StrategyRepository implements Contract
         return Strategy::where('uuid', $uuid)->firstOrFail();
     }
 
-    public function createOrUpdate($data)
+    public function createOrUpdate(array $data)
     {
         if (array_has($data, 'uuid')) {
             $strategy = Strategy::where('uuid', $data['uuid'])->firstOrFail();

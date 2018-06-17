@@ -16,7 +16,7 @@ class UserRepository implements Contract
         return User::where('uuid', $uuid)->firstOrFail();
     }
 
-    public function createOrUpdate($data)
+    public function createOrUpdate(array $data)
     {
         if (array_has($data, 'uuid')) {
             $user = User::where('uuid', $data['uuid'])->firstOrFail();
