@@ -20,6 +20,9 @@ before_install:
   - mkdir -p build/logs
   - cp .env.travis .env
   - mysql -e 'create database feature_manager;'
+  - export DB_DATABASE=feature_manager
+  - export DB_USERNAME=root
+  - export DB_PASSWORD=
   - travis_retry composer self-update
 
 install:
@@ -28,6 +31,11 @@ install:
 script:
   - php artisan migrate --seed
   - php vendor/bin/phpunit -c phpunit.xml.dist
+
+branches:
+  only:
+    - master
+    - develop
 
 after_success:
   - php vendor/bin/php-coveralls -v
