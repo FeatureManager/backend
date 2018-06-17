@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories;
 
 use App\Repositories\Contracts\User as Contract;
@@ -10,7 +11,7 @@ class UserRepository implements Contract
     {
         return User::all();
     }
- 
+
     public function getUserById($uuid)
     {
         return User::where('uuid', $uuid)->firstOrFail();
@@ -21,6 +22,7 @@ class UserRepository implements Contract
         if (array_has($data, 'uuid')) {
             $user = User::where('uuid', $data['uuid'])->firstOrFail();
             $user->email = $data['email'];
+
             return $user->save();
         }
 

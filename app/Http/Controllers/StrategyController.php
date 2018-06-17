@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\Strategy;
+use Illuminate\Http\Request;
 
 class StrategyController extends Controller
 {
@@ -26,26 +27,29 @@ class StrategyController extends Controller
     public function list()
     {
         $strategies = $this->strategy->getAllStrategies();
+
         return $strategies;
     }
 
     public function show($uuid)
     {
         $strategy = $this->strategy->getStrategyById($uuid);
+
         return $strategy;
     }
 
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:strategies|max:255',
+            'name'    => 'required|unique:strategies|max:255',
             'enabled' => 'required',
         ]);
 
         $strategy = $this->strategy->createOrUpdate($request->toArray());
         if (is_bool($strategy)) {
-            $strategy = [ "message" => $strategy ];
+            $strategy = ['message' => $strategy];
         }
+
         return $strategy;
     }
 
@@ -60,6 +64,7 @@ class StrategyController extends Controller
             $activate = false;
         }
         $strategy = $this->strategy->toggle($uuid, $activate);
-        return [ "message" => $strategy ];
+
+        return ['message' => $strategy];
     }
 }

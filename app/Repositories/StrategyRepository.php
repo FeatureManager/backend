@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories;
 
 use App\Repositories\Contracts\Strategy as Contract;
@@ -10,7 +11,7 @@ class StrategyRepository implements Contract
     {
         return Strategy::all();
     }
- 
+
     public function getStrategyById($uuid)
     {
         return Strategy::where('uuid', $uuid)->firstOrFail();
@@ -34,6 +35,7 @@ class StrategyRepository implements Contract
     {
         $strategy = Strategy::where('uuid', $uuid)->firstOrFail();
         $strategy->enabled = $activate;
+
         return $strategy->save();
     }
 }

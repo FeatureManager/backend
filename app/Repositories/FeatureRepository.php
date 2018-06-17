@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\Feature as Contract;
 use App\Feature;
+use App\Repositories\Contracts\Feature as Contract;
 
 class FeatureRepository implements Contract
 {
@@ -10,7 +11,7 @@ class FeatureRepository implements Contract
     {
         return Feature::all();
     }
- 
+
     public function getFeatureById($uuid)
     {
         return Feature::where('uuid', $uuid)->firstOrFail();
@@ -34,6 +35,7 @@ class FeatureRepository implements Contract
     {
         $feature = Feature::where('uuid', $uuid)->firstOrFail();
         $feature->enabled = $activate;
+
         return $feature->save();
     }
 }
