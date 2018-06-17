@@ -16,7 +16,7 @@ class CreateParametersTable extends Migration
         Schema::create('parameters', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid');
-            $table->string('name', 200);
+            $table->string('name', 128);
             $table->string('value', 200);
             $table->string('description', 500);
             $table->boolean('enabled');

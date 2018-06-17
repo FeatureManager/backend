@@ -16,7 +16,7 @@ class CreateStrategiesTable extends Migration
         Schema::create('strategies', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('uuid');
-            $table->string('name', 200);
+            $table->string('name', 128);
             $table->string('description', 200);
             $table->boolean('enabled');
             $table->timestamps();
