@@ -4,23 +4,23 @@ class FeatureTest extends TestCase
 {
     public function testListFeatures()
     {
-        $this->get("feature");
+        $this->get('feature');
         $this->seeStatusCode(200);
         $this->seeJson([
-            'enabled' => 1
+            'enabled' => 1,
         ]);
     }
 
     public function testCreateFeature()
     {
-        $name = 'Test Feature ' . date('Ymdhmisu');
+        $name = 'Test Feature '.date('Ymdhmisu');
         $data = [
-            'name' => $name,
+            'name'        => $name,
             'description' => 'This is a sandbox feature.',
-            'enabled' => true
+            'enabled'     => true,
         ];
 
-        $this->post("feature", $data);
+        $this->post('feature', $data);
         $this->seeStatusCode(200);
         $this->seeJson([
             'name' => $name,
@@ -30,20 +30,20 @@ class FeatureTest extends TestCase
     public function testShowFeature()
     {
         $feature = \App\Feature::first();
-        $this->get("feature/" . $feature->uuid);
+        $this->get('feature/'.$feature->uuid);
         $this->seeStatusCode(200);
         $this->seeJsonContains([
-            'name' => $feature->name
+            'name' => $feature->name,
         ]);
     }
 
     public function testUpdateFeature()
     {
         $feature = \App\Feature::first();
-        $updatedName = $feature->name . ' Updated';
+        $updatedName = $feature->name.' Updated';
         $feature->name = $updatedName;
 
-        $this->put("feature", $feature->toArray());
+        $this->put('feature', $feature->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -54,7 +54,7 @@ class FeatureTest extends TestCase
     {
         $feature = \App\Feature::first();
 
-        $this->put("feature/" . $feature->uuid, $feature->toArray());
+        $this->put('feature/'.$feature->uuid, $feature->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -65,7 +65,7 @@ class FeatureTest extends TestCase
     {
         $feature = \App\Feature::first();
 
-        $this->delete("feature/" . $feature->uuid, $feature->toArray());
+        $this->delete('feature/'.$feature->uuid, $feature->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,

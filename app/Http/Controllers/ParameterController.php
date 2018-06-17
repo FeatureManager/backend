@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\Parameter;
+use Illuminate\Http\Request;
 
 class ParameterController extends Controller
 {
@@ -27,26 +27,29 @@ class ParameterController extends Controller
     public function list()
     {
         $parameters = $this->parameter->getAllParameters();
+
         return $parameters;
     }
 
     public function show($uuid)
     {
         $parameter = $this->parameter->getParameterById($uuid);
+
         return $parameter;
     }
 
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:parameters|max:255',
+            'name'    => 'required|unique:parameters|max:255',
             'enabled' => 'required',
         ]);
 
         $parameter = $this->parameter->createOrUpdate($request->toArray());
         if (is_bool($parameter)) {
-            $parameter = [ "message" => $parameter ];
+            $parameter = ['message' => $parameter];
         }
+
         return $parameter;
     }
 
@@ -61,6 +64,7 @@ class ParameterController extends Controller
             $activate = false;
         }
         $parameter = $this->parameter->toggle($uuid, $activate);
-        return [ "message" => $parameter ];
+
+        return ['message' => $parameter];
     }
 }

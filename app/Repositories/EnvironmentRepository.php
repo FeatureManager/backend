@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\Environment as Contract;
 use App\Environment;
+use App\Repositories\Contracts\Environment as Contract;
 
 class EnvironmentRepository implements Contract
 {
@@ -10,7 +11,7 @@ class EnvironmentRepository implements Contract
     {
         return Environment::all();
     }
- 
+
     public function getEnvironmentById($uuid)
     {
         return Environment::where('uuid', $uuid)->firstOrFail();
@@ -34,6 +35,7 @@ class EnvironmentRepository implements Contract
     {
         $environment = Environment::where('uuid', $uuid)->firstOrFail();
         $environment->enabled = $activate;
+
         return $environment->save();
     }
 }
