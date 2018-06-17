@@ -18,14 +18,14 @@ cache:
 
 before_install:
   - mkdir -p build/logs
-  - mysql -e 'create database feature_manager;'
   - cp .env.travis .env
+  - mysql -e 'create database feature_manager;'
   - travis_retry composer self-update
 
 install:
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest; fi
 
-script: 
+script:
   - php artisan migrate --seed
   - php vendor/bin/phpunit -c phpunit.xml.dist
 
