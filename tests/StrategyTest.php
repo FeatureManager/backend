@@ -4,7 +4,7 @@ class StrategyTest extends TestCase
 {
     public function testListStrategies()
     {
-        $this->get("admin/strategy");
+        $this->get('admin/strategy');
         $this->seeStatusCode(200);
         $this->seeJson([
             'enabled' => 1,
@@ -19,7 +19,7 @@ class StrategyTest extends TestCase
             'description' => 'This is a sandbox strategy.',
             'enabled'     => true,
         ];
-        $this->post("admin/strategy", $data);
+        $this->post('admin/strategy', $data);
         $this->seeStatusCode(200);
         $this->seeJson([
             'name' => $name,
@@ -29,7 +29,7 @@ class StrategyTest extends TestCase
     public function testShowStrategy()
     {
         $strategy = \App\Strategy::first();
-        $this->get("admin/strategy/" . $strategy->uuid);
+        $this->get('admin/strategy/'.$strategy->uuid);
         $this->seeStatusCode(200);
         $this->seeJsonContains([
             'name' => $strategy->name,
@@ -41,7 +41,7 @@ class StrategyTest extends TestCase
         $strategy = \App\Strategy::first();
         $updatedName = $strategy->name.' Updated';
         $strategy->name = $updatedName;
-        $this->put("admin/strategy", $strategy->toArray());
+        $this->put('admin/strategy', $strategy->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -51,7 +51,7 @@ class StrategyTest extends TestCase
     public function testEnableStrategy()
     {
         $strategy = \App\Strategy::first();
-        $this->put("admin/strategy/" . $strategy->uuid, $strategy->toArray());
+        $this->put('admin/strategy/'.$strategy->uuid, $strategy->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -61,7 +61,7 @@ class StrategyTest extends TestCase
     public function testDisableStrategy()
     {
         $strategy = \App\Strategy::first();
-        $this->delete("admin/strategy/" . $strategy->uuid, $strategy->toArray());
+        $this->delete('admin/strategy/'.$strategy->uuid, $strategy->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
