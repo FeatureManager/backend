@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\Environment;
+use Illuminate\Http\Request;
 
 class EnvironmentController extends Controller
 {
@@ -26,26 +27,29 @@ class EnvironmentController extends Controller
     public function list()
     {
         $environments = $this->environment->getAllEnvironments();
+
         return $environments;
     }
 
     public function show($uuid)
     {
         $environment = $this->environment->getEnvironmentById($uuid);
+
         return $environment;
     }
 
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:environments|max:255',
+            'name'    => 'required|unique:environments|max:255',
             'enabled' => 'required',
         ]);
 
         $environment = $this->environment->createOrUpdate($request->toArray());
         if (is_bool($environment)) {
-            $environment = [ "message" => $environment ];
+            $environment = ['message' => $environment];
         }
+
         return $environment;
     }
 
@@ -60,6 +64,7 @@ class EnvironmentController extends Controller
             $activate = false;
         }
         $environment = $this->environment->toggle($uuid, $activate);
-        return [ "message" => $environment ];
+
+        return ['message' => $environment];
     }
 }

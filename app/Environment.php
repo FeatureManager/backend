@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ class Environment extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'enabled'
+        'name', 'description', 'enabled',
     ];
 
     /**

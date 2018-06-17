@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Contracts;
 
 interface Environment
@@ -12,6 +13,7 @@ interface Environment
      * else it will update the model returned model given by uuid field.
      *
      * @param array $data
+     *
      * @return mixed
      */
     public function createOrUpdate(array $data);
@@ -21,8 +23,9 @@ interface Environment
      * it will update the model.
      *
      * @param Uiid $uuid
-     * @param boolean $activate
-     * @return boolean
+     * @param bool $activate
+     *
+     * @return bool
      */
     public function toggle($uuid, $activate = true);
 }
