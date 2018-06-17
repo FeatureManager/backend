@@ -1,8 +1,9 @@
 <?php
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\Parameter as Contract;
 use App\Parameter;
+use App\Repositories\Contracts\Parameter as Contract;
 
 class ParameterRepository implements Contract
 {
@@ -10,7 +11,7 @@ class ParameterRepository implements Contract
     {
         return Parameter::all();
     }
- 
+
     public function getParameterById($uuid)
     {
         return Parameter::where('uuid', $uuid)->firstOrFail();
@@ -34,6 +35,7 @@ class ParameterRepository implements Contract
     {
         $parameter = Parameter::where('uuid', $uuid)->firstOrFail();
         $parameter->enabled = $activate;
+
         return $parameter->save();
     }
 }

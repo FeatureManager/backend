@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Repositories\Contracts\Feature;
+use Illuminate\Http\Request;
 
 class FeatureController extends Controller
 {
@@ -27,26 +27,29 @@ class FeatureController extends Controller
     public function list()
     {
         $features = $this->feature->getAllFeatures();
+
         return $features;
     }
 
     public function show($uuid)
     {
         $feature = $this->feature->getFeatureById($uuid);
+
         return $feature;
     }
 
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:features|max:255',
+            'name'    => 'required|unique:features|max:255',
             'enabled' => 'required',
         ]);
 
         $feature = $this->feature->createOrUpdate($request->toArray());
         if (is_bool($feature)) {
-            $feature = [ "message" => $feature ];
+            $feature = ['message' => $feature];
         }
+
         return $feature;
     }
 
@@ -61,6 +64,7 @@ class FeatureController extends Controller
             $activate = false;
         }
         $feature = $this->feature->toggle($uuid, $activate);
-        return [ "message" => $feature ];
+
+        return ['message' => $feature];
     }
 }

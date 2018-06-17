@@ -4,23 +4,23 @@ class ParameterTest extends TestCase
 {
     public function testListParameters()
     {
-        $this->get("parameter");
+        $this->get('parameter');
         $this->seeStatusCode(200);
         $this->seeJson([
-            'enabled' => 1
+            'enabled' => 1,
         ]);
     }
 
     public function testCreateParameter()
     {
-        $name = 'Test Parameter ' . date('Ymdhmisu');
+        $name = 'Test Parameter '.date('Ymdhmisu');
         $data = [
-            'name' => $name,
+            'name'        => $name,
             'description' => 'This is a sandbox parameter.',
-            'enabled' => true
+            'enabled'     => true,
         ];
 
-        $this->post("parameter", $data);
+        $this->post('parameter', $data);
         $this->seeStatusCode(200);
         $this->seeJson([
             'name' => $name,
@@ -30,20 +30,20 @@ class ParameterTest extends TestCase
     public function testShowParameter()
     {
         $parameter = \App\Parameter::first();
-        $this->get("parameter/" . $parameter->uuid);
+        $this->get('parameter/'.$parameter->uuid);
         $this->seeStatusCode(200);
         $this->seeJsonContains([
-            'name' => $parameter->name
+            'name' => $parameter->name,
         ]);
     }
 
     public function testUpdateParameter()
     {
         $parameter = \App\Parameter::first();
-        $updatedName = $parameter->name . ' Updated';
+        $updatedName = $parameter->name.' Updated';
         $parameter->name = $updatedName;
 
-        $this->put("parameter", $parameter->toArray());
+        $this->put('parameter', $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -54,7 +54,7 @@ class ParameterTest extends TestCase
     {
         $parameter = \App\Parameter::first();
 
-        $this->put("parameter/" . $parameter->uuid, $parameter->toArray());
+        $this->put('parameter/'.$parameter->uuid, $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,
@@ -65,7 +65,7 @@ class ParameterTest extends TestCase
     {
         $parameter = \App\Parameter::first();
 
-        $this->delete("parameter/" . $parameter->uuid, $parameter->toArray());
+        $this->delete('parameter/'.$parameter->uuid, $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
             'message' => true,

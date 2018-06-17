@@ -1,6 +1,9 @@
 <?php
+
 namespace App;
+
 use Illuminate\Support\Str;
+
 trait Uuids
 {
     protected static function boot()

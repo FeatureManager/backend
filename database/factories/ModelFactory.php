@@ -20,37 +20,37 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Environment::class, function (Faker\Generator $faker) {
     return [
-        'uuid' => $faker->uuid,
-        'name'  => $faker->unique()->word,
+        'uuid'        => $faker->uuid,
+        'name'        => $faker->unique()->word,
         'description' => $faker->text,
-        'enabled' => true
+        'enabled'     => true,
     ];
 });
 
 $factory->define(App\Feature::class, function (Faker\Generator $faker) {
     return [
-        'uuid' => $faker->uuid,
-        'name' => $faker->unique()->word,
+        'uuid'        => $faker->uuid,
+        'name'        => $faker->unique()->word,
         'description' => $faker->text,
-        'enabled' => true
+        'enabled'     => true,
     ];
 });
 
 $factory->define(App\Parameter::class, function (Faker\Generator $faker) {
     return [
-        'uuid' => $faker->uuid,
-        'name' => $faker->unique()->word,
-        'value' => $faker->userName,
+        'uuid'        => $faker->uuid,
+        'name'        => $faker->unique()->word,
+        'value'       => $faker->userName,
         'description' => $faker->text,
-        'enabled' => true
+        'enabled'     => true,
     ];
 });
 
 $factory->define(App\Strategy::class, function (Faker\Generator $faker) {
     return [
-        'uuid' => $faker->uuid,
-        'name' => $faker->unique()->word,
+        'uuid'        => $faker->uuid,
+        'name'        => $faker->unique()->word,
         'description' => $faker->text,
-        'enabled' => true
+        'enabled'     => true,
     ];
 });
