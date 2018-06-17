@@ -17,13 +17,24 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
+  - mkdir -p build/logs
+  - mkdir bootstrap/cache
+  - mkdir storage
+  - mkdir storage/app
+  - mkdir storage/framework
+  - mkdir storage/framework/sessions
+  - mkdir storage/framework/cache
+  - mkdir storage/framework/views
+  - chmod 777 -R storage
+  - mysql -e 'create database feature_manager;'
+  - cp .env.travis .env
   - travis_retry composer self-update
 
 install:
   - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest; fi
 
 script: 
-  - mkdir -p build/logs
+  - php artisan migrate --seed
   - php vendor/bin/phpunit -c phpunit.xml.dist
 
 after_success:
