@@ -6,6 +6,8 @@ The Feature Manager project is a tool to turn on/off your projects features and/
 
 ## About Feature Manager (backend)
 
+**WARNING:** This is a very early stage project.
+
 A PHP [Lumen](https://lumen.laravel.com)-based Backend for Feature Manager Project.
 
 This backend is designed for work alone, however the official frontend for the project can be found [here](https://github.com/FeatureManager/frontend).
