@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for considering contributing to the Feature Manager! Welcome to our Contributing Guide.
+Thank you for considering contributing to the Feature Manager! Welcome to our Contribution Guide.
 
 ## Getting Started
 
@@ -28,20 +28,90 @@ At this point you should be able to access the Backend on url:
 
 [http://localhost:8080/](http://localhost:8080/)
 
-Since Feature Manager backend is based on [Lumen](https://lumen.laravel.com), you must enter on container bash and give some directories permissions:
+Since Feature Manager backend is based on [Lumen](https://lumen.laravel.com), you must enter on container bash. To do that, list your containers:
+
+```bash
+docker ps
+```
+
+You'll probably see something like this
+
+```bash
+CONTAINER ID        IMAGE
+a9e84d5f8ba2        feature-manager-docker
+1eea28f6747f        mariadb:latest
+```
+
+_**Note**_: We have removed some columns from this results just to fits on this manual.
+
+If you find the ```"feature-manager-docker"``` name everything is fine until now. So to access the container bash, type:
+
+```bash
+docker run -it feature-manager-docker sh
+```
+
+And give some directories permissions, it's for Lumen:
 
 ```bash
 chmod -R o+rw bootstrap/ storage/
 ```
 
-Ok, you almost there, now let's create the database (yet on container bash):
+Ok, you're almost there, now let's create the database (yet on container bash):
 
 ```bash
 php artisan migrate
 ```
 
-Now, you are able to code!
+Now, you are able to code! Do your code, write your unit tests and enjoy!
 
 ## Testing
 
-Because our Docker Environment, on your local machine, you must call PHPUnit from Feature Manager Docker Bash.
+Well, at this point you already have learned how to configure the development environment, create the database from Docker container bash, now but no less important let's learn how to test. Of course you already coded your's unit tests right?
+
+As you already know access the container bash access it, and just type:
+
+```bash
+php vendor/bin/phpunit -c phpunit.xml
+```
+
+Simple as that! And you'll get this kind of response from PHPUnit:
+
+```bash
+# php vendor/bin/phpunit -c phpunit.xml
+PHPUnit 7.2.4 by Sebastian Bergmann and contributors.
+
+........................                                          24 / 24 (100%)
+
+Time: 1.22 seconds, Memory: 14.00MB
+
+OK (24 tests, 48 assertions)
+```
+
+You can do more cool things, let's check the tests coverage now. It's strongly recommended do it before you submit your commits:
+
+```bash
+# php vendor/bin/phpunit -c phpunit.xml --coverage-text
+PHPUnit 7.2.4 by Sebastian Bergmann and contributors.
+
+........................                                          24 / 24 (100%)
+
+Time: 2.92 seconds, Memory: 16.00MB
+
+OK (24 tests, 48 assertions)
+
+Code Coverage Report:
+  2018-06-20 01:18:58
+
+ Summary:
+  Classes: 55.56% (10/18)
+  Methods: 71.70% (38/53)
+  Lines:   84.71% (144/170)
+
+\App::Uuids
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  4/  4)
+\App\Http\Controllers::App\Http\Controllers\EnvironmentController
+  Methods: 100.00% ( 5/ 5)   Lines: 100.00% ( 19/ 19)
+...
+```
+
+Nice! Now you are able to contributing with any part of API's lifecycle. And again thank you for your time and help!
