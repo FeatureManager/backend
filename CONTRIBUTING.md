@@ -21,7 +21,7 @@ After you have cloned the repository you can see the ```docker-composer.yml``` a
 docker-composer build
 ```
 
-_**Note**_: Build command could take some while.
+> _**Note**_: Build command could take some while.
 
 And to turn on the Container:
 
@@ -29,7 +29,7 @@ And to turn on the Container:
 docker-composer up [-d]
 ```
 
-_**Note**_: Optionally, on Up command you can use -d for non-verbose output.
+> _**Note**_: Optionally, on Up command you can use -d for non-verbose output.
 
 At this point you should be able to access the Backend on url:
 
@@ -49,7 +49,7 @@ a9e84d5f8ba2        feature-manager-docker
 1eea28f6747f        mariadb:latest
 ```
 
-_**Note**_: We have removed some columns from this results just to fits on this manual.
+> _**Note**_: We have removed some columns from this results just to fits on this manual.
 
 If you find the ```"feature-manager-docker"``` name on list from ```docker ps``` command, everything is fine until now. So, to access the container bash, type:
 
@@ -69,7 +69,7 @@ Ok, you're almost there, now let's create the database (yet on container bash):
 php artisan migrate --seed
 ```
 
-__**Note**__: `--seed` option is for generate some data for you play. Also Recommended on first time up.
+> __**Note**__: `--seed` option is for generate some data for you play. Also Recommended on first time up.
 
 Now, you are able to code! Do your code, write your unit tests, submit some pull requests, and enjoy!
 
