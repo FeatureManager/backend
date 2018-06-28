@@ -41,7 +41,7 @@ class ParameterController extends Controller
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name'    => 'required|unique:parameters|max:255',
+            'name'    => 'required|unique:parameters|max:255|alpha_dash',
             'enabled' => 'required',
         ]);
 
@@ -66,5 +66,10 @@ class ParameterController extends Controller
         $parameter = $this->parameter->toggle($uuid, $activate);
 
         return ['message' => $parameter];
+    }
+
+    public function process($key, $environment = null)
+    {
+        return [$this->parameter->process($key, $environment)];
     }
 }

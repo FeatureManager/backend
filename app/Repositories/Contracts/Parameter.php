@@ -28,4 +28,14 @@ interface Parameter
      * @return bool
      */
     public function toggle($uuid, $activate = true);
+
+    /**
+     * Truly process the params and returns the parameter value.
+     *
+     * @param string $key Parameter key name.
+     * @param string $environment Environment name.
+     *
+     * @return mixed
+     */
+    public function process($key, $environment = null);
 }
