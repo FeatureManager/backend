@@ -13,7 +13,7 @@ class ParameterTest extends TestCase
 
     public function testCreateParameter()
     {
-        $name = 'Test Parameter '.date('Ymdhmisu');
+        $name = 'Test_Parameter_'.date('Ymdhmisu');
         $data = [
             'name'        => $name,
             'description' => 'This is a sandbox parameter.',
@@ -39,8 +39,12 @@ class ParameterTest extends TestCase
     public function testUpdateParameter()
     {
         $parameter = \App\Parameter::first();
-        $updatedName = $parameter->name.' Updated';
-        $parameter->name = $updatedName;
+        $name = $parameter->name;
+        $parameter->name = $name.' Updated';
+        $this->put('admin/parameter', $parameter->toArray());
+        $this->seeStatusCode(422);
+
+        $parameter->name = $name.'-Updated';
         $this->put('admin/parameter', $parameter->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
@@ -66,5 +70,29 @@ class ParameterTest extends TestCase
         $this->seeJson([
             'message' => true,
          ]);
+    }
+
+    public function testProcess()
+    {
+        $this->get('parameter/abcde');
+        $this->seeStatusCode(200);
+        $this->seeJson([
+            '',
+        ]);
+
+        $parameter = \App\Parameter::first();
+        $this->get('parameter/'.$parameter->name);
+        $this->seeStatusCode(200);
+        $this->seeJson([
+            $parameter->value,
+        ]);
+
+        $environment = \App\Environment::first();
+        $parameter = $environment->parameters()->first();
+        $this->get('parameter/'.$parameter->name.'/'.$environment->name);
+        $this->seeStatusCode(200);
+        $this->seeJson([
+            $parameter->value,
+        ]);
     }
 }

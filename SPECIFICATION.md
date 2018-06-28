@@ -46,8 +46,8 @@ This is the tool that manage the API. With this tool you can:
 
 - **Manage Users**: Create, update, and changes password.
 - **Manage Enviroments**: Create and update.
-- **Manage Parameters**: Create, update, and viculate to some Environment.
-- **Manage Feature**: Create, update, and viculate to some Environment.
+- **Manage Parameters**: Create, update, and vinculate to some Environment.
+- **Manage Feature**: Create, update, and vinculate to some Environment.
 - **Manage Strategies**: Create, update and vinculate with some Feature.
 - **Audit**: All features, parameters and strategies when change, it will be stored on a log table with date, hour and user who have changed the item.
 

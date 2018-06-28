@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         factory(App\Parameter::class, 10)->create();
         factory(App\Strategy::class, 10)->create();
 
-        // Populate pivot tables for Envionments.
+        // Populate pivot tables for Environments.
         $environments = App\Environment::all();
 
         App\Feature::all()->each(function ($feature) use ($environments) {

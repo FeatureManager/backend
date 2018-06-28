@@ -69,7 +69,7 @@ Ok, you're almost there, now let's create the database (yet on container bash):
 php artisan migrate --seed
 ```
 
-> __**Note**__: `--seed` option is for generate some data for you play. Also Recommended on first time up.
+> _**Note**_: `--seed` option is for generate some data for you play. Also Recommended on first time up.
 
 Now, you are able to code! Do your code, write your unit tests, submit some pull requests, and enjoy!
 

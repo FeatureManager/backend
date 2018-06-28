@@ -45,5 +45,5 @@ $router->group(['prefix' => 'admin'], function () use ($router) {
     $router->delete('strategy/{uuid}', 'StrategyController@toggle');
 });
 
-$router->get('feature/{key}[/{environment}]', 'FeatureController@process');
 $router->get('parameter/{key}[/{environment}]', 'ParameterController@process');
+$router->get('feature/{key}[/{environment}]', 'FeatureController@process');
