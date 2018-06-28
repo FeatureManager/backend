@@ -41,7 +41,7 @@ class FeatureController extends Controller
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name'    => 'required|unique:features|max:255',
+            'name'    => 'required|unique:features|max:255|alpha_dash',
             'enabled' => 'required',
         ]);
 

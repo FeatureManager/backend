@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Parameter;
+use App\Environment;
 use App\Repositories\Contracts\Parameter as Contract;
 
 class ParameterRepository implements Contract
@@ -37,5 +38,21 @@ class ParameterRepository implements Contract
         $parameter->enabled = $activate;
 
         return $parameter->save();
+    }
+
+    public function process($key, $environment = null)
+    {
+        $ret = [];
+        if (!empty($environment)) {
+            $environment = Environment::where('name', $environment)->with('parameters')->first();
+            $ret = $environment->parameters()->where('parameters.name', $key)->get();
+        }
+        $ret = Parameter::where('name', $key)->first();
+
+        if (!empty($ret)) {
+            return $ret->value;
+        } else {
+            return '';
+        }
     }
 }
