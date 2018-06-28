@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Parameter;
 use App\Environment;
+use App\Parameter;
 use App\Repositories\Contracts\Parameter as Contract;
 
 class ParameterRepository implements Contract

@@ -77,14 +77,14 @@ class ParameterTest extends TestCase
         $this->get('parameter/abcde');
         $this->seeStatusCode(200);
         $this->seeJson([
-            ''
+            '',
         ]);
 
         $parameter = \App\Parameter::first();
         $this->get('parameter/'.$parameter->name);
         $this->seeStatusCode(200);
         $this->seeJson([
-            $parameter->value
+            $parameter->value,
         ]);
 
         $environment = \App\Environment::first();
@@ -92,7 +92,7 @@ class ParameterTest extends TestCase
         $this->get('parameter/'.$parameter->name.'/'.$environment->name);
         $this->seeStatusCode(200);
         $this->seeJson([
-            $parameter->value
+            $parameter->value,
         ]);
     }
 }
