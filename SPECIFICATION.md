@@ -49,6 +49,6 @@ This is the tool that manage the API. With this tool you can:
 - **Manage Parameters**: Create, update, and vinculate to some Environment.
 - **Manage Feature**: Create, update, and vinculate to some Environment.
 - **Manage Strategies**: Create, update and vinculate with some Feature.
-- **Audit**: All features, parameters and strategies when change, it will be stored on a log table with date, hour and user who have changed the item.
+- **Audit**: All features, parameters and strategies and Environments when change, it will be stored on a log table with date, hour and user who have changed the item.
 
 Created by: [@henrisk](https://github.com/henrisk) | Reviewed by: [@danilolutz](https://github.com/danilolutz)
