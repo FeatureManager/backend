@@ -29,6 +29,13 @@ class Environment extends Model
     ];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
+    /**
      * The Features that belong to the Environment.
      */
     public function features()

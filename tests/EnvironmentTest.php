@@ -13,7 +13,7 @@ class EnvironmentTest extends TestCase
 
     public function testCreateEnvironment()
     {
-        $name = 'Test Environment '.date('Ymdhmisu');
+        $name = 'Test_Environment_'.date('Ymdhmisu');
         $data = [
             'name'        => $name,
             'description' => 'This is a sandbox environment.',
@@ -40,12 +40,16 @@ class EnvironmentTest extends TestCase
     public function testUpdateEnvironment()
     {
         $environment = \App\Environment::first();
-        $updatedName = $environment->name.' Updated';
-        $environment->name = $updatedName;
+        $name = $environment->name;
+        $environment->name = $name.' Updated';
+        $this->put('admin/environment', $environment->toArray());
+        $this->seeStatusCode(422);
+
+        $environment->name = $name.'-Updated';
         $this->put('admin/environment', $environment->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
-            'message' => true,
+            'name' => $environment->name,
          ]);
     }
 

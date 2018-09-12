@@ -41,14 +41,11 @@ class StrategyController extends Controller
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name'    => 'required|unique:strategies|max:255',
+            'name'    => 'required|unique:strategies|max:255|alpha_dash',
             'enabled' => 'required',
         ]);
 
         $strategy = $this->strategy->createOrUpdate($request->toArray());
-        if (is_bool($strategy)) {
-            $strategy = ['message' => $strategy];
-        }
 
         return $strategy;
     }

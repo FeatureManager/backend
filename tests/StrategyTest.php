@@ -13,7 +13,7 @@ class StrategyTest extends TestCase
 
     public function testCreateStrategy()
     {
-        $name = 'Test Strategy '.date('Ymdhmisu');
+        $name = 'Test_Strategy_'.date('Ymdhmisu');
         $data = [
             'name'        => $name,
             'description' => 'This is a sandbox strategy.',
@@ -39,12 +39,16 @@ class StrategyTest extends TestCase
     public function testUpdateStrategy()
     {
         $strategy = \App\Strategy::first();
-        $updatedName = $strategy->name.' Updated';
-        $strategy->name = $updatedName;
+        $name = $strategy->name;
+        $strategy->name = $name.' Updated';
+        $this->put('admin/strategy', $strategy->toArray());
+        $this->seeStatusCode(422);
+
+        $strategy->name = $name.'-Updated';
         $this->put('admin/strategy', $strategy->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
-            'message' => true,
+            'name' => $strategy->name,
          ]);
     }
 

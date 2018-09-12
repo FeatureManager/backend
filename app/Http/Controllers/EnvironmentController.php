@@ -41,14 +41,11 @@ class EnvironmentController extends Controller
     public function save(Request $request)
     {
         $this->validate($request, [
-            'name'    => 'required|unique:environments|max:255',
+            'name'    => 'required|unique:environments|max:255|alpha_dash',
             'enabled' => 'required',
         ]);
 
         $environment = $this->environment->createOrUpdate($request->toArray());
-        if (is_bool($environment)) {
-            $environment = ['message' => $environment];
-        }
 
         return $environment;
     }

@@ -15,7 +15,7 @@ class Parameter extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'value', 'description',
+        'name', 'value', 'description', 'enabled',
     ];
 
     /**
@@ -26,6 +26,13 @@ class Parameter extends Model
     protected $hidden = [
         'id',
     ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The Environments that belong to the Parameter.

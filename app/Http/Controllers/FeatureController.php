@@ -46,9 +46,6 @@ class FeatureController extends Controller
         ]);
 
         $feature = $this->feature->createOrUpdate($request->toArray());
-        if (is_bool($feature)) {
-            $feature = ['message' => $feature];
-        }
 
         return $feature;
     }
