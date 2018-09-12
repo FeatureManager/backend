@@ -12,7 +12,7 @@ A PHP [Lumen](https://lumen.laravel.com)-based Backend for Feature Manager Proje
 
 This backend is designed for work alone, however the official frontend for the project can be found [here](https://github.com/FeatureManager/frontend).
 
-If you want to better understand this project we invite you to read this [Specification document](SPECIFICATION.md).
+If you want to better understand this project we invite you to read this [Specification Document](SPECIFICATION.md).
 
 ## Contributing
 

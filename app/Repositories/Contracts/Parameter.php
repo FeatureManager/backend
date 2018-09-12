@@ -44,7 +44,7 @@ interface Parameter
     /**
      * Truly process the params and returns the parameter value.
      *
-     * @param string $key Parameter key name.
+     * @param string $key         Parameter key name.
      * @param string $environment Environment name.
      *
      * @return mixed
