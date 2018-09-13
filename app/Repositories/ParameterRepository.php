@@ -26,7 +26,7 @@ class ParameterRepository implements Contract
             $parameter->description = $data['description'];
             $parameter->enabled = $data['enabled'];
             $parameter->save();
-            
+
             return $parameter;
         }
 

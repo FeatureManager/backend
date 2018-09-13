@@ -25,7 +25,7 @@ class FeatureRepository implements Contract
             $feature->description = $data['description'];
             $feature->enabled = $data['enabled'];
             $feature->save();
-            
+
             return $feature;
         }
 
