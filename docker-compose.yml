@@ -4,7 +4,6 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile
-    image: feature-manager-docker
     ports:
       - 8080:80
     volumes:
