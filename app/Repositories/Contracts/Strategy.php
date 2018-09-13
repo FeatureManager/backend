@@ -22,7 +22,7 @@ interface Strategy
 
     /**
      * If $data array has no uuid field createOrUpdate will create the model
-     * else it will update the model and in both cases returns model
+     * else it will update the model and in both cases returns model.
      *
      * @param array $data
      *
