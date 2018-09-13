@@ -4,7 +4,6 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile
-    image: feature-manager-docker
     ports:
       - 8080:80
     volumes:
@@ -33,3 +32,5 @@ services:
   #   image: redis:4.0-alpine
   #   ports:
   #     - 16379:6379
+  phpqa:
+    image: jakzal/phpqa:php7.1-alpine

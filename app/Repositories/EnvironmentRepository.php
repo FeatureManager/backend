@@ -24,8 +24,9 @@ class EnvironmentRepository implements Contract
             $environment->name = $data['name'];
             $environment->description = $data['description'];
             $environment->enabled = $data['enabled'];
+            $environment->save();
 
-            return $environment->save();
+            return $environment;
         }
 
         return Environment::create($data);

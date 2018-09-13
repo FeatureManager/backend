@@ -25,8 +25,9 @@ class ParameterRepository implements Contract
             $parameter->name = $data['name'];
             $parameter->description = $data['description'];
             $parameter->enabled = $data['enabled'];
+            $parameter->save();
 
-            return $parameter->save();
+            return $parameter;
         }
 
         return Parameter::create($data);
@@ -42,17 +43,18 @@ class ParameterRepository implements Contract
 
     public function process($key, $environment = null)
     {
-        $ret = [];
-        if (!empty($environment)) {
-            $environment = Environment::where('name', $environment)->with('parameters')->first();
-            $ret = $environment->parameters()->where('parameters.name', $key)->get();
-        }
-        $ret = Parameter::where('name', $key)->first();
+        // Todo: must be implemented.
+        // $ret = [];
+        // if (!empty($environment)) {
+        //     $environment = Environment::where('name', $environment)->with('parameters')->first();
+        //     $ret = $environment->parameters()->where('parameters.name', $key)->get();
+        // }
+        // $ret = Parameter::where('name', $key)->first();
 
-        if (!empty($ret)) {
-            return $ret->value;
-        } else {
-            return '';
-        }
+        // if (!empty($ret)) {
+        //     return $ret->value;
+        // } else {
+        //     return '';
+        // }
     }
 }

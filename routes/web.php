@@ -16,6 +16,13 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'admin'], function () use ($router) {
+    $router->get('user', 'UserController@list');
+    $router->get('user/{uuid}', 'UserController@show');
+    $router->put('user/', 'UserController@save');
+    $router->post('user/', 'UserController@save');
+    $router->put('user/{uuid}', 'UserController@toggle');
+    $router->delete('user/{uuid}', 'UserController@toggle');
+
     $router->get('environment', 'EnvironmentController@list');
     $router->get('environment/{uuid}', 'EnvironmentController@show');
     $router->put('environment/', 'EnvironmentController@save');

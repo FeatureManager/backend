@@ -46,9 +46,6 @@ class ParameterController extends Controller
         ]);
 
         $parameter = $this->parameter->createOrUpdate($request->toArray());
-        if (is_bool($parameter)) {
-            $parameter = ['message' => $parameter];
-        }
 
         return $parameter;
     }

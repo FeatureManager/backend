@@ -14,7 +14,7 @@ class Feature extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description',
+        'name', 'description', 'enabled',
     ];
 
     /**
@@ -25,6 +25,13 @@ class Feature extends Model
     protected $hidden = [
         'id',
     ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The Environments that belong to the Feature.

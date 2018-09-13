@@ -24,8 +24,9 @@ class StrategyRepository implements Contract
             $strategy->name = $data['name'];
             $strategy->description = $data['description'];
             $strategy->enabled = $data['enabled'];
+            $strategy->save();
 
-            return $strategy->save();
+            return $strategy;
         }
 
         return Strategy::create($data);

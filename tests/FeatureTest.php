@@ -44,11 +44,11 @@ class FeatureTest extends TestCase
         $this->put('admin/feature', $feature->toArray());
         $this->seeStatusCode(422);
 
-        $feature->name = $name.'_Updated';
+        $feature->name = $name.'-Updated';
         $this->put('admin/feature', $feature->toArray());
         $this->seeStatusCode(200);
         $this->seeJson([
-            'message' => true,
+            'name' => $feature->name,
          ]);
     }
 

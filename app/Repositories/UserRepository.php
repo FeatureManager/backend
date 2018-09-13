@@ -21,11 +21,35 @@ class UserRepository implements Contract
     {
         if (array_has($data, 'uuid')) {
             $user = User::where('uuid', $data['uuid'])->firstOrFail();
-            $user->email = $data['email'];
+            $user->name = $data['name'];
+            $user->enabled = $data['enabled'];
+            $user->save();
 
-            return $user->save();
+            return $user;
         }
 
         return User::create($data);
+    }
+
+    public function toggle($uuid, $activate = true)
+    {
+        $user = User::where('uuid', $uuid)->firstOrFail();
+        $user->enabled = $activate;
+
+        return $user->save();
+    }
+
+    // TODO: End user's authentication/authorization.
+    public function checkPassword($email, $password)
+    {
+        return User::where('email', $email)->where('password', $password)->first();
+    }
+
+    public function changePassword($uuid, $oldPassword, $newPassword)
+    {
+        $user = User::where('uuid', $uuid)->firstOrFail();
+        $user->enabled = $activate;
+
+        return $user->save();
     }
 }
