@@ -1,6 +1,7 @@
 setup:
 	docker-compose pull
 	docker-compose build
+	cp .env.example .env
 	make seed
 	docker-compose up -d
 	cp pre-commit-hook .git/hooks/pre-commit
