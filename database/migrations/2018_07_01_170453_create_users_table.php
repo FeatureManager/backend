@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->uuid('uuid');
             $table->string('name', 100);
-            $table->string('email')->unique();
+            $table->string('email', 160)->unique();
             $table->string('password');
             $table->boolean('enabled');
             $table->string('api_token');
